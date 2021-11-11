@@ -17,5 +17,5 @@ func _ready():
 
 
 func _on_StartHost_pressed():
-	get_tree().change_scene("res://Arena.tscn")
+	get_tree().change_scene("res://class select.tscn")
 	pass # Replace with function body.

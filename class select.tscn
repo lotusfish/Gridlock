@@ -28,7 +28,7 @@ margin_top = 130.134
 margin_right = 307.619
 margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
-text = "Select a class! ( Player A )"
+text = "Select a class!"
 items = [ "Select a class!", null, false, 0, null, "Artificer", null, false, 1, null, "Engineer", null, false, 2, null ]
 selected = 0
 __meta__ = {
@@ -41,12 +41,20 @@ margin_top = 130.134
 margin_right = 544.911
 margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
-text = "Select a class! ( Player B )"
+text = "Select a class!"
 items = [ "Select a class!", null, false, 0, null, "Artificer", null, false, 1, null, "Engineer", null, false, 2, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="."]
+margin_left = 175.0
+margin_top = 206.0
+margin_right = 462.0
+margin_bottom = 356.0
+text = "BEGIN!"
+
 [connection signal="item_selected" from="ClassSelectA" to="." method="_on_ClassSelectA_item_selected"]
 [connection signal="item_selected" from="ClassSelectB" to="." method="_on_ClassSelectB_item_selected"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
