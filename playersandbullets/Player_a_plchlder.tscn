@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scripts/Player related/players.gd" type="Script" id=1]
+[ext_resource path="res://player parts/torso/body_dino.png" type="Texture" id=2]
+[ext_resource path="res://player parts/head/head_dino.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Area2D
+signal hit
+func _ready():
+	pass
+
+func _process(delta):
+	var bullet = get_tree().get_nodes_in_group(\"BulletB\")
+	for i in range(len(bullet)):
+		if overlaps_area(bullet[i]) == true:
+			bullet[i].queue_free()
+			emit_signal(\"hit\")
+				
+"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.75164, 14.9384 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "bobbing"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1e-05, 1e-05 ),
+"update": 0,
+"values": [ Vector2( -4.82, 2.4 ), Vector2( -4.82, 1.4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3, 0.8 ),
+"transitions": PoolRealArray( 1e-05, 1e-05 ),
+"update": 0,
+"values": [ Vector2( -4.82, 1.4 ), Vector2( -4.82, 0.4 ) ]
+}
+
+[node name="PlayerA" type="KinematicBody2D"]
+position = Vector2( 0.223981, -0.174984 )
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[node name="Sprites" type="Node2D" parent="."]
+position = Vector2( 4.94975, -5.3033 )
+
+[node name="head" type="Sprite" parent="Sprites"]
+position = Vector2( -4.82, 2.4 )
+texture = ExtResource( 3 )
+
+[node name="body" type="Sprite" parent="Sprites"]
+position = Vector2( -4.82, 1.4 )
+texture = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprites"]
+anims/bobbing = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[connection signal="hit" from="Area2D" to="." method="_on_Area2D_hit"]

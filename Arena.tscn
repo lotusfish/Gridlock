@@ -1,0 +1,92 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
+[ext_resource path="res://playersandbullets/Player_b_plchlder.tscn" type="PackedScene" id=2]
+[ext_resource path="res://playersandbullets/Player_a_plchlder.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/UI/grid_duel.png" type="Texture" id=4]
+[ext_resource path="res://scripts/placeholders/ScoreB.gd" type="Script" id=5]
+[ext_resource path="res://scripts/placeholders/ScoreA.gd" type="Script" id=6]
+[ext_resource path="res://playersandbullets/bullet_b.tscn" type="PackedScene" id=7]
+[ext_resource path="res://playersandbullets/bullet_a.tscn" type="PackedScene" id=8]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Sprite
+
+func _ready():
+	pass
+	
+func _process(delta):
+	position.x = get_node(\"../PlayerA\").global_position.x + 369
+	position.y = get_node(\"../PlayerA\").global_position.y
+"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Sprite
+
+func _ready():
+	pass
+	
+func _process(delta):
+	position.x = get_node(\"../PlayerB\").global_position.x - 369
+	position.y = get_node(\"../PlayerB\").global_position.y
+"
+
+[node name="Arena" type="Node2D"]
+
+[node name="ArenaGrid" type="Sprite" parent="."]
+position = Vector2( 320, 200 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlayerA" parent="." instance=ExtResource( 3 )]
+position = Vector2( 136, 162 )
+AorB = 1
+myBullet = ExtResource( 8 )
+myEnemy = NodePath("../PlayerB")
+
+[node name="PlayerB" parent="." instance=ExtResource( 2 )]
+position = Vector2( 505, 162 )
+AorB = 2
+myBullet = ExtResource( 7 )
+myEnemy = NodePath("../PlayerA")
+
+[node name="CrosshairA" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.4 )
+position = Vector2( -11, -11 )
+texture = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="CrosshairB" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.4 )
+position = Vector2( -11, -11 )
+texture = ExtResource( 1 )
+script = SubResource( 2 )
+
+[node name="Text scores" type="Node2D" parent="."]
+
+[node name="ScoreA" type="RichTextLabel" parent="Text scores"]
+margin_left = 5.82657
+margin_top = 22.8775
+margin_right = 232.827
+margin_bottom = 62.8775
+text = "Player A score: "
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreB" type="RichTextLabel" parent="Text scores"]
+margin_left = 389.204
+margin_top = 23.102
+margin_right = 616.204
+margin_bottom = 63.102
+text = "Player B score: "
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="Ahurt" from="PlayerA" to="Text scores/ScoreB" method="_on_PlayerA_Ahurt"]
+[connection signal="Bhurt" from="PlayerB" to="Text scores/ScoreA" method="_on_PlayerB_Bhurt"]

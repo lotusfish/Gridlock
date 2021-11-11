@@ -1,0 +1,133 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://art/UI/logo NOTFINAL.png" type="Texture" id=1]
+[ext_resource path="res://scripts/placeholders/ButtonPlchlder.gd" type="Script" id=2]
+[ext_resource path="res://scripts/inane/splashtext.gd" type="Script" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_Button_pressed():
+	get_tree().change_scene(\"res://Patch notes (remove when release).tscn\")
+	pass # Replace with function body.
+"
+
+[node name="Menu" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -14.439
+margin_top = -19.1021
+margin_right = 665.561
+margin_bottom = 386.898
+color = Color( 0.776471, 0.92549, 0.760784, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="logo NOTFINAL" type="Sprite" parent="."]
+position = Vector2( 180, 72 )
+scale = Vector2( 9, 9 )
+texture = ExtResource( 1 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 13.0
+margin_top = 335.0
+margin_right = 535.0
+margin_bottom = 371.0
+rect_clip_content = false
+bbcode_enabled = true
+bbcode_text = "[color=purple][tornado radius=5 freq=2]Alpha gameplay: All subject to change! [/tornado][/color]"
+text = "Alpha gameplay: All subject to change! "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="splash text" type="RichTextLabel" parent="."]
+margin_left = 8.84723
+margin_top = 65.3138
+margin_right = 634.848
+margin_bottom = 84.3138
+bbcode_enabled = true
+bbcode_text = "[color=blue]splash text go here [/color]"
+text = "splash text go here "
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+margin_top = -15.0
+margin_right = 40.0
+margin_bottom = 25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartLocal" type="Button" parent="Buttons"]
+margin_left = 16.0
+margin_top = 170.0
+margin_right = 276.0
+margin_bottom = 280.0
+hint_tooltip = "Play locally on your current system. Requires no host/clients or networking."
+text = "Play Locally"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartHost" type="Button" parent="Buttons"]
+visible = false
+margin_left = 350.0
+margin_top = 170.0
+margin_right = 610.0
+margin_bottom = 225.0
+hint_tooltip = "One player in the game must be the host.
+Not yet implemented"
+text = "Create Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartClient" type="Button" parent="Buttons"]
+visible = false
+margin_left = 350.0
+margin_top = 240.0
+margin_right = 610.0
+margin_bottom = 295.0
+hint_tooltip = "Enter the host's IP address to join their game
+Not yet implemented"
+text = "Join Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="About" type="Button" parent="Buttons"]
+margin_left = 350.0
+margin_top = 170.0
+margin_right = 610.0
+margin_bottom = 280.0
+text = "About!"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="Buttons/StartLocal" to="Buttons/StartLocal" method="_on_StartHost_pressed"]
+[connection signal="pressed" from="Buttons/About" to="Buttons/About" method="_on_Button_pressed"]

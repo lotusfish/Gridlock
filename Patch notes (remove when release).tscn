@@ -1,0 +1,75 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_Button_pressed():
+	get_tree().change_scene(\"res://Menu.tscn\")
+	pass # Replace with function body.
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -14.439
+margin_top = -19.1021
+margin_right = 665.561
+margin_bottom = 386.898
+color = Color( 0.776471, 0.92549, 0.760784, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 0.1
+anchor_bottom = 1.0
+margin_right = 179.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "Patch notes:
+v0.11
+- Added animation to the bullets so they sway up and down
+- Added a cooldown (currently 0.25s) to regular firing.
+- Added about page (here!)
+- Code work for multiple classes (not yet implemented due to lack of abilities)
+- Tweaked bullet speed and particles "
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Button" type="Button" parent="."]
+anchor_top = 1.0
+anchor_right = 0.295312
+anchor_bottom = 1.0
+margin_top = -38.0
+margin_right = 12.0
+text = "Return to menu"
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
