@@ -53,7 +53,7 @@ func _process(delta):
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9.28625, 70.8744 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Shield" type="Node2D"]
 script = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
