@@ -38,6 +38,7 @@ enum abilities{
 	#engineer class
 	barrier = 4
 	beamTurret = 5
+	mine = 6
 }
 
 #my abilities
@@ -88,6 +89,8 @@ func _ready():
 			aCD = 6
 		5:
 			aCD = 14
+		6:
+			aCD = 8
 	match abilityB:
 		1:
 			bCD = 3
@@ -99,6 +102,8 @@ func _ready():
 			bCD = 6
 		5:
 			bCD = 14
+		6:
+			bCD = 8
 	match abilityC:
 		1:
 			cCD = 3
@@ -110,6 +115,8 @@ func _ready():
 			cCD = 6
 		5:
 			cCD = 14
+		6:
+			cCD = 8
 	match myClass:
 		1: # generic class
 			abilityA = abilities.burstShot
@@ -117,7 +124,7 @@ func _ready():
 			abilityC = abilities.shield
 		2:
 			abilityA = abilities.beamTurret
-			abilityB = abilities.zapEnemy
+			abilityB = abilities.mine
 			abilityC = abilities.barrier
 
 	pass 
@@ -199,6 +206,15 @@ func abilityTurret():
 	owner.add_child(tur)
 	tur.position = global_position
 
+func abilityMine():
+	var mine = load("res://spell scenes/mine.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 1:
+		tur.position = get_node("../CrosshairB").global_position
+
 #function that casts abilities
 func cast(ability):
 	if ability == abilities.burstShot:
@@ -211,6 +227,8 @@ func cast(ability):
 		abilityBarrier()
 	elif ability == abilities.beamTurret:
 		abilityTurret()
+	elif ability == abilities.mine:
+		abilityMine()
 	else:
 		print("Invalid ability cast")
 
