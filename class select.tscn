@@ -31,8 +31,8 @@ margin_right = 307.619
 margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
-text = "Select a class!"
-items = [ "Select a class!", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
+text = "Player A"
+items = [ "Player A", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -44,8 +44,8 @@ margin_top = 130.134
 margin_right = 544.911
 margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
-text = "Select a class!"
-items = [ "Select a class!", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
+text = "Player B"
+items = [ "Player B", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -57,6 +57,18 @@ margin_top = 206.0
 margin_right = 462.0
 margin_bottom = 356.0
 text = "BEGIN!"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 286.0
+margin_top = 103.0
+margin_right = 375.0
+margin_bottom = 119.0
+bbcode_enabled = true
+bbcode_text = "[color=black]Select a class[/color]"
+text = "Select a class"
 __meta__ = {
 "_edit_use_anchors_": true
 }
