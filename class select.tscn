@@ -35,7 +35,7 @@ text = "Select a class!"
 items = [ "Select a class!", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
 selected = 0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="ClassSelectB" type="OptionButton" parent="."]
@@ -48,7 +48,7 @@ text = "Select a class!"
 items = [ "Select a class!", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Engineer", ExtResource( 2 ), false, 2, null ]
 selected = 0
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": true
 }
 
 [node name="Button" type="Button" parent="."]
@@ -57,6 +57,9 @@ margin_top = 206.0
 margin_right = 462.0
 margin_bottom = 356.0
 text = "BEGIN!"
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [connection signal="item_selected" from="ClassSelectA" to="." method="_on_ClassSelectA_item_selected"]
 [connection signal="item_selected" from="ClassSelectB" to="." method="_on_ClassSelectB_item_selected"]
