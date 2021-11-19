@@ -85,7 +85,6 @@ margin_left = 16.0
 margin_top = 170.0
 margin_right = 276.0
 margin_bottom = 280.0
-hint_tooltip = "Play locally on your current system. Requires no host/clients or networking."
 text = "Play Locally"
 script = ExtResource( 2 )
 __meta__ = {
