@@ -78,6 +78,15 @@ func _ready():
 			myClass = globals.classB
 	$Sprites/AnimationPlayer.play("bobbing")
 	#Cooldowns
+	match myClass:
+		1: # generic class
+			abilityA = abilities.burstShot
+			abilityB = abilities.zapEnemy
+			abilityC = abilities.shield
+		2:
+			abilityA = abilities.beamTurret
+			abilityB = abilities.mine
+			abilityC = abilities.barrier
 	match abilityA:
 		1:
 			aCD = 3
@@ -117,15 +126,7 @@ func _ready():
 			cCD = 14
 		6:
 			cCD = 8
-	match myClass:
-		1: # generic class
-			abilityA = abilities.burstShot
-			abilityB = abilities.zapEnemy
-			abilityC = abilities.shield
-		2:
-			abilityA = abilities.beamTurret
-			abilityB = abilities.mine
-			abilityC = abilities.barrier
+
 
 	pass 
 	
