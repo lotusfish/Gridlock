@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/grid_duel.png" type="Texture" id=2]
@@ -9,6 +9,22 @@
 [ext_resource path="res://art/tutorial/W.png" type="Texture" id=7]
 [ext_resource path="res://art/tutorial/A.png" type="Texture" id=8]
 [ext_resource path="res://art/tutorial/G.png" type="Texture" id=9]
+[ext_resource path="res://playersandbullets/Player_b_plchlder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://playersandbullets/bullet_b.tscn" type="PackedScene" id=11]
+[ext_resource path="res://art/tutorial/K.png" type="Texture" id=12]
+[ext_resource path="res://art/tutorial/J.png" type="Texture" id=13]
+[ext_resource path="res://art/tutorial/H.png" type="Texture" id=14]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+func _ready():
+	pass
+
+func _process(delta):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().change_scene(\"res://Menu.tscn\")
+"
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
@@ -22,6 +38,7 @@ func _process(delta):
 "
 
 [node name="Node2D" type="Node2D"]
+script = SubResource( 2 )
 
 [node name="CrosshairA" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.4 )
@@ -40,6 +57,19 @@ __meta__ = {
 position = Vector2( 136, 162 )
 AorB = 1
 myBullet = ExtResource( 4 )
+myEnemy = NodePath("../PlayerB")
+
+[node name="H" type="Sprite" parent="PlayerA"]
+position = Vector2( 323, 49 )
+texture = ExtResource( 14 )
+
+[node name="J" type="Sprite" parent="PlayerA"]
+position = Vector2( 366, 49 )
+texture = ExtResource( 13 )
+
+[node name="K" type="Sprite" parent="PlayerA"]
+position = Vector2( 416, 48 )
+texture = ExtResource( 12 )
 
 [node name="W" type="Sprite" parent="."]
 position = Vector2( 136, 113 )
@@ -60,3 +90,9 @@ texture = ExtResource( 5 )
 [node name="G" type="Sprite" parent="."]
 position = Vector2( 502, 162 )
 texture = ExtResource( 9 )
+
+[node name="PlayerB" parent="." instance=ExtResource( 10 )]
+position = Vector2( 410, -364 )
+AorB = 2
+myBullet = ExtResource( 11 )
+myEnemy = NodePath("../PlayerA")
