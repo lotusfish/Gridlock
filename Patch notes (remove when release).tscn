@@ -60,6 +60,30 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+anchor_left = 0.43125
+anchor_top = 0.00555556
+anchor_right = 0.53125
+anchor_bottom = 1.00556
+margin_right = 179.0
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+custom_colors/selection_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "Controls:
+	Player A:
+		WASD to move
+		G for a basic attack
+		H,J,K for class abilities.
+	Player B:
+		Arrow keys to move
+		SHIFT for a basic attack
+		\",\",\".\",\"/\" for abilities
+
+Proper tutorial coming soon we swear!"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
 [node name="Button" type="Button" parent="."]
 anchor_top = 1.0
 anchor_right = 0.295312
