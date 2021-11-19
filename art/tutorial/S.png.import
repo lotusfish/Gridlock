@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/logo NOTFINAL.png-baf202ff3efb624bcacf0fda25b09cd9.stex"
+path="res://.import/S.png-437d7ba6deda8676c1a7aa906225b073.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/UI/logo NOTFINAL.png"
-dest_files=[ "res://.import/logo NOTFINAL.png-baf202ff3efb624bcacf0fda25b09cd9.stex" ]
+source_file="res://art/tutorial/S.png"
+dest_files=[ "res://.import/S.png-437d7ba6deda8676c1a7aa906225b073.stex" ]
 
 [params]
 

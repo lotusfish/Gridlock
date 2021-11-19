@@ -1,9 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/grid_duel.png" type="Texture" id=2]
 [ext_resource path="res://playersandbullets/Player_a_plchlder.tscn" type="PackedScene" id=3]
 [ext_resource path="res://playersandbullets/bullet_a.tscn" type="PackedScene" id=4]
+[ext_resource path="res://art/tutorial/D.png" type="Texture" id=5]
+[ext_resource path="res://art/tutorial/S.png" type="Texture" id=6]
+[ext_resource path="res://art/tutorial/W.png" type="Texture" id=7]
+[ext_resource path="res://art/tutorial/A.png" type="Texture" id=8]
+[ext_resource path="res://art/tutorial/G.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
@@ -35,3 +40,23 @@ __meta__ = {
 position = Vector2( 136, 162 )
 AorB = 1
 myBullet = ExtResource( 4 )
+
+[node name="W" type="Sprite" parent="."]
+position = Vector2( 136, 113 )
+texture = ExtResource( 7 )
+
+[node name="A" type="Sprite" parent="."]
+position = Vector2( 91, 159 )
+texture = ExtResource( 8 )
+
+[node name="S" type="Sprite" parent="."]
+position = Vector2( 135, 211 )
+texture = ExtResource( 6 )
+
+[node name="D" type="Sprite" parent="."]
+position = Vector2( 184, 164 )
+texture = ExtResource( 5 )
+
+[node name="G" type="Sprite" parent="."]
+position = Vector2( 502, 162 )
+texture = ExtResource( 9 )
