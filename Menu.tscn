@@ -72,10 +72,10 @@ __meta__ = {
 }
 
 [node name="splash text" type="RichTextLabel" parent="."]
-margin_left = 15.0
-margin_top = 264.0
-margin_right = 641.001
-margin_bottom = 283.0
+margin_left = 16.0
+margin_top = 267.0
+margin_right = 642.001
+margin_bottom = 286.0
 bbcode_enabled = true
 bbcode_text = "[color=blue]splash text go here [/color]"
 text = "splash text go here "
