@@ -20,3 +20,8 @@ var bodyB = cosmetics.ninja
 
 var classA = classes.artificer
 var classB = classes.artificer
+
+func _process(_delta):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		if get_tree().get_current_scene().get_name() != "Menu":
+			get_tree().change_scene("res://Menu.tscn")
