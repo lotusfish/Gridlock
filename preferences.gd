@@ -9,8 +9,8 @@ enum cosmetics{
 }
 
 enum classes{
-	generic = 1
-	barrierer = 2
+	artificer = 1
+	engineer = 2
 }
 
 var headA = cosmetics.dino
@@ -18,6 +18,10 @@ var bodyA = cosmetics.dino
 var headB = cosmetics.ninja
 var bodyB = cosmetics.ninja
 
-var classA = classes.barrierer
-var classB = classes.barrierer
+var classA = classes.artificer
+var classB = classes.artificer
 
+func _process(_delta):
+	if Input.is_key_pressed(KEY_ESCAPE):
+		if get_tree().get_current_scene().get_name() != "Menu":
+			get_tree().change_scene("res://Menu.tscn")
