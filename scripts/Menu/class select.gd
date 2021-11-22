@@ -25,7 +25,6 @@ func _on_ClassSelectA_item_selected(index):
 func _on_ClassSelectB_item_selected(index):
 	if index != 0:
 		globals.classB = index
-	print(index)
 	pass # Replace with function body.
 
 
