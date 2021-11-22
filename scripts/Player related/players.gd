@@ -15,10 +15,10 @@ var gridy = 2 #^^^^
 var gridjump = 48 #Distance between grid squares
 var hp = 3 # Starting HP
 var invuln = false #Am i currently invulnerable
-var weaponCooledDown = true
-var mobile = true
-var movementCD = 0.075
-onready var globals = get_node("/root/preferences")
+var weaponCooledDown = true #Can i shoot?
+var mobile = true#Can i move?
+var movementCD = 0.075#Cooldown between movements
+onready var globals = get_node("/root/preferences")#Where global variables and stuff are stored
 export(int) var AorB #Which player 1:A 2:B
 export(PackedScene) var myBullet # What's my bullet scene
 export(NodePath) var myEnemy #the other enemy
@@ -66,6 +66,7 @@ signal Bhurt
 signal Bdead
 signal Bshot
 signal Bmove(dir)
+signal startCooldown(cd,slot)
 #shootin
 var bulletA = preload("res://playersandbullets/bullet_a.tscn")
 var bulletB = preload("res://playersandbullets/bullet_b.tscn")
@@ -126,7 +127,15 @@ func _ready():
 			cCD = 14
 		6:
 			cCD = 8
-
+	#Set up signals for cooldowns
+	if AorB == 1:
+		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/ACD2"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/ACD3"),"startCooldown")
+	elif AorB == 2:
+		connect("startCooldown",get_node("../CDI/BCD1"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/BCD2"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/BCD3"),"startCooldown")
 
 	pass 
 	
@@ -283,18 +292,18 @@ func _input(event):
 		if event.is_action_pressed("A_ABIL1") and aCooledDown:
 			cast(abilityA)
 			aCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
+			emit_signal("startCooldown",aCD,1)
 		if event.is_action_pressed("A_ABIL2") and bCooledDown:
 			cast(abilityB)
 			bCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
+			emit_signal("startCooldown",bCD,2)
 		if event.is_action_pressed("A_ABIL3") and cCooledDown:
 			cast(abilityC)
 			cCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
+			emit_signal("startCooldown",cCD,3)
 	elif AorB == 2:
 		if mobile == true:
 			if event.is_action_pressed("B_UP"):
@@ -332,19 +341,18 @@ func _input(event):
 		if event.is_action_pressed("B_ABIL1") and aCooledDown:
 			cast(abilityA)
 			aCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
+			emit_signal("startCooldown",aCD,1)
 		if event.is_action_pressed("B_ABIL2") and bCooledDown:
 			cast(abilityB)
 			bCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
+			emit_signal("startCooldown",bCD,2)
 		if event.is_action_pressed("B_ABIL3") and cCooledDown:
 			cast(abilityC)
 			cCooledDown = false
-# warning-ignore:return_value_discarded
 			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
-
+			emit_signal("startCooldown",cCD,3)
 # warning-ignore:unused_argument
 func _process(delta):
 	if hp == 0:

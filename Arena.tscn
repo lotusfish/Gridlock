@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
 [ext_resource path="res://playersandbullets/Player_b_plchlder.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scripts/placeholders/ScoreA.gd" type="Script" id=6]
 [ext_resource path="res://playersandbullets/bullet_b.tscn" type="PackedScene" id=7]
 [ext_resource path="res://playersandbullets/bullet_a.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assorted scenes/cooldown indicator.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
@@ -87,6 +88,68 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CDI" type="Node2D" parent="."]
+
+[node name="ACD1" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 16.0
+margin_top = 296.0
+margin_right = 64.0
+margin_bottom = 360.0
+A_Or_B_Or_C = 1
+Team_A_Or_B = 1
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
+
+[node name="ACD2" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 112.0
+margin_top = 295.0
+margin_right = 160.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 2
+Team_A_Or_B = 1
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
+
+[node name="ACD3" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 208.0
+margin_top = 296.0
+margin_right = 256.0
+margin_bottom = 360.0
+A_Or_B_Or_C = 3
+Team_A_Or_B = 1
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
+
+[node name="BCD1" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 384.0
+margin_top = 295.0
+margin_right = 432.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 1
+Team_A_Or_B = 2
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
+
+[node name="BCD2" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 481.0
+margin_top = 296.0
+margin_right = 529.0
+margin_bottom = 360.0
+A_Or_B_Or_C = 2
+Team_A_Or_B = 2
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
+
+[node name="BCD3" parent="CDI" instance=ExtResource( 9 )]
+margin_left = 577.0
+margin_top = 296.0
+margin_right = 625.0
+margin_bottom = 360.0
+A_Or_B_Or_C = 3
+Team_A_Or_B = 2
+PlayerA = NodePath("../../PlayerA")
+PlayerB = NodePath("../../PlayerB")
 
 [connection signal="Ahurt" from="PlayerA" to="Text scores/ScoreB" method="_on_PlayerA_Ahurt"]
 [connection signal="Bhurt" from="PlayerB" to="Text scores/ScoreA" method="_on_PlayerB_Bhurt"]
