@@ -11,6 +11,7 @@ enum cosmetics{
 enum classes{
 	artificer = 1
 	engineer = 2
+	trapper = 3
 }
 
 var headA = cosmetics.dino

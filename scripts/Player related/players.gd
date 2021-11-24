@@ -53,9 +53,6 @@ var aCD = 3
 var bCD = 3
 var cCD = 3
 var myClass = 1
-#define cooldowns
-
-
 
 #signals
 signal Ahurt
@@ -162,7 +159,6 @@ func abilityBurstShot():
 	shotA.position = above
 	shotB.position = position
 	shotC.position = below
-
 func abiltyZapEnemy():
 	var enemy = get_node(myEnemy)
 	var boltscene = preload("res://spell scenes/zapspell.tscn")
@@ -184,18 +180,15 @@ func abiltyZapEnemy():
 			else:
 				enemy.emit_signal("Ahurt")
 	pass
-
 func abilityShield():
 	invuln = true
 	get_tree().create_timer(0.6).connect("timeout",self,"abilityShieldEnd")
 	$Sprites/head.modulate = Color(0,0,1)
 	$Sprites/body.modulate = Color(0,0,1)
-
 func abilityShieldEnd():
 	invuln = false
 	$Sprites/head.modulate = Color(1,1,1)
 	$Sprites/body.modulate = Color(1,1,1)
-
 func abilityBarrier():
 	var barrier = preload("res://spell scenes/shield.tscn")
 	var myBarrier = barrier.instance()
@@ -209,13 +202,11 @@ func abilityBarrier():
 		myBarrier.global_position.x = position.x - 56
 		myBarrier.global_position.y = position.y
 	pass
-
 func abilityTurret():
 	var turret = load("res://spell scenes/turret.tscn")
 	var tur = turret.instance()
 	owner.add_child(tur)
 	tur.position = global_position
-
 func abilityMine():
 	var mine = load("res://spell scenes/mine.tscn")
 	var tur = mine.instance()
@@ -264,6 +255,7 @@ func _input(event):
 					emit_signal("Amove",dirs.up)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("A_DOWN"):
 				if gridy < 4:
 					gridy += 1
@@ -271,6 +263,7 @@ func _input(event):
 					emit_signal("Amove",dirs.down)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("A_LEFT"):
 				if gridx > 0:
 					gridx -= 1
@@ -278,6 +271,7 @@ func _input(event):
 					emit_signal("Amove",dirs.left)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("A_RIGHT"):
 				if gridx < 4:
 					gridx += 1
@@ -285,25 +279,30 @@ func _input(event):
 					emit_signal("Amove",dirs.right)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 		if event.is_action_pressed("A_SHOOT") and weaponCooledDown == true:
 			shoot()
 			weaponCooledDown = false
 			get_tree().create_timer(0.25).connect("timeout",self,"weaponCooled")
+			
 		if event.is_action_pressed("A_ABIL1") and aCooledDown:
 			cast(abilityA)
 			aCooledDown = false
 			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
 			emit_signal("startCooldown",aCD,1)
+			
 		if event.is_action_pressed("A_ABIL2") and bCooledDown:
 			cast(abilityB)
 			bCooledDown = false
 			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
 			emit_signal("startCooldown",bCD,2)
+			
 		if event.is_action_pressed("A_ABIL3") and cCooledDown:
 			cast(abilityC)
 			cCooledDown = false
 			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
 			emit_signal("startCooldown",cCD,3)
+
 	elif AorB == 2:
 		if mobile == true:
 			if event.is_action_pressed("B_UP"):
@@ -313,6 +312,7 @@ func _input(event):
 					emit_signal("Bmove",dirs.up)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("B_DOWN"):
 				if gridy < 4:
 					gridy += 1
@@ -320,6 +320,7 @@ func _input(event):
 					emit_signal("Bmove",dirs.down)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("B_LEFT"):
 				if gridx > 0:
 					gridx -= 1
@@ -327,6 +328,7 @@ func _input(event):
 					emit_signal("Bmove",dirs.left)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+					
 			if event.is_action_pressed("B_RIGHT"):
 				if gridx < 4:
 					gridx += 1
@@ -334,26 +336,30 @@ func _input(event):
 					emit_signal("Bmove",dirs.right)
 					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 					mobile = false
+
 		if event.is_action_pressed("B_SHOOT") and weaponCooledDown == true:
 			weaponCooledDown = false
 			get_tree().create_timer(0.25).connect("timeout",self,"weaponCooled")
 			shoot()
+
 		if event.is_action_pressed("B_ABIL1") and aCooledDown:
 			cast(abilityA)
 			aCooledDown = false
 			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
 			emit_signal("startCooldown",aCD,1)
+			
 		if event.is_action_pressed("B_ABIL2") and bCooledDown:
 			cast(abilityB)
 			bCooledDown = false
 			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
 			emit_signal("startCooldown",bCD,2)
+			
 		if event.is_action_pressed("B_ABIL3") and cCooledDown:
 			cast(abilityC)
 			cCooledDown = false
 			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
 			emit_signal("startCooldown",cCD,3)
-# warning-ignore:unused_argument
+
 func _process(delta):
 	if hp == 0:
 		if AorB == 1:
@@ -369,4 +375,3 @@ func _on_Area2D_hit():
 			emit_signal("Ahurt")
 		elif AorB == 2:
 			emit_signal("Bhurt")
-

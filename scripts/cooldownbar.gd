@@ -1,9 +1,9 @@
 extends ProgressBar
 
 export(int) var A_Or_B_Or_C
-export(int) var Team_A_Or_B
-export(NodePath) var PlayerA
-export(NodePath) var PlayerB
+#export(int) var Team_A_Or_B
+#export(NodePath) var PlayerA
+#export(NodePath) var PlayerB
 
 var timeLeft = 0
 

@@ -14,7 +14,6 @@ func _process(delta):
 	var bullet = get_tree().get_nodes_in_group(\"BulletB\")
 	for i in range(len(bullet)):
 		if overlaps_area(bullet[i]) == true:
-			print(\"ehehe\")
 			bullet[i].queue_free()
 			emit_signal(\"hit\")
 				
