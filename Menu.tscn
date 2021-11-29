@@ -16,6 +16,7 @@ position = Vector2( 320, 180 )
 texture = ExtResource( 4 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 13.0
 margin_top = 335.0
 margin_right = 535.0
