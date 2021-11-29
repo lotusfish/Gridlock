@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/grid_duel.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://art/tutorial/K.png" type="Texture" id=12]
 [ext_resource path="res://art/tutorial/J.png" type="Texture" id=13]
 [ext_resource path="res://art/tutorial/H.png" type="Texture" id=14]
+[ext_resource path="res://assorted scenes/cooldown indicator.tscn" type="PackedScene" id=15]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
@@ -86,3 +87,47 @@ texture = ExtResource( 14 )
 [node name="G" type="Sprite" parent="Tutorial glyps"]
 position = Vector2( 502, 162 )
 texture = ExtResource( 9 )
+
+[node name="CDI" type="Node" parent="."]
+
+[node name="BCD3" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 578.0
+margin_top = 295.0
+margin_right = 626.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 3
+
+[node name="ACD2" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 112.0
+margin_top = 295.0
+margin_right = 160.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 2
+
+[node name="ACD1" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 15.0
+margin_top = 295.0
+margin_right = 63.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 1
+
+[node name="ACD3" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 208.0
+margin_top = 294.0
+margin_right = 256.0
+margin_bottom = 358.0
+A_Or_B_Or_C = 3
+
+[node name="BCD1" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 385.0
+margin_top = 295.0
+margin_right = 433.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 1
+
+[node name="BCD2" parent="CDI" instance=ExtResource( 15 )]
+margin_left = 481.0
+margin_top = 295.0
+margin_right = 529.0
+margin_bottom = 359.0
+A_Or_B_Or_C = 2
