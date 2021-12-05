@@ -77,6 +77,8 @@ signal startCooldown(cd,slot)
 
 #endregion
 
+#region abilityfuncs
+
 func shoot():
 	var shot = myBullet.instance()
 	owner.add_child(shot)
@@ -87,7 +89,7 @@ func shoot():
 		emit_signal("Bshot")
 	pass
 
-#region abilityfuncs
+
 func abilityBurstShot():
 	var shotA = myBullet.instance()
 	var shotB = myBullet.instance()
