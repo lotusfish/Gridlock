@@ -77,6 +77,30 @@ signal startCooldown(cd,slot)
 
 #endregion
 
+#region general player funcs
+
+func move(dir):
+	if dir == dirs.up:
+		gridy -= 1
+		position.y -= gridjump
+	if dir == dirs.left:
+		gridx -= 1
+		position.x -= gridjump
+	if dir == dirs.down:
+		gridy += 1
+		position.y += gridjump
+	if dir == dirs.right:
+		gridx += 1
+		position.x += gridjump
+	if AorB == 1:
+		emit_signal("Amove",dir)
+	else:
+		emit_signal("Bmove",dir)
+	get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
+	mobile = false
+		
+#endregion
+
 #region abilityfuncs
 
 func shoot():
@@ -265,35 +289,18 @@ func _input(event):
 		if mobile == true:
 			if event.is_action_pressed("A_UP"):
 				if gridy > 0:
-					gridy -= 1
-					position.y -= gridjump
-					emit_signal("Amove",dirs.up)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
-					
+					move(dirs.up)
 			if event.is_action_pressed("A_DOWN"):
 				if gridy < 4:
-					gridy += 1
-					position.y += gridjump
-					emit_signal("Amove",dirs.down)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.down)
 					
 			if event.is_action_pressed("A_LEFT"):
 				if gridx > 0:
-					gridx -= 1
-					position.x -= gridjump
-					emit_signal("Amove",dirs.left)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.left)
 					
 			if event.is_action_pressed("A_RIGHT"):
 				if gridx < 4:
-					gridx += 1
-					position.x += gridjump
-					emit_signal("Amove",dirs.right)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.right)
 					
 		if event.is_action_pressed("A_SHOOT") and weaponCooledDown == true:
 			shoot()
@@ -322,35 +329,19 @@ func _input(event):
 		if mobile == true:
 			if event.is_action_pressed("B_UP"):
 				if gridy > 0:
-					gridy -= 1
-					position.y -= gridjump
-					emit_signal("Bmove",dirs.up)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.up)
 					
 			if event.is_action_pressed("B_DOWN"):
 				if gridy < 4:
-					gridy += 1
-					position.y += gridjump
-					emit_signal("Bmove",dirs.down)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.down)
 					
 			if event.is_action_pressed("B_LEFT"):
 				if gridx > 0:
-					gridx -= 1
-					position.x -= gridjump
-					emit_signal("Bmove",dirs.left)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.left)
 					
 			if event.is_action_pressed("B_RIGHT"):
 				if gridx < 4:
-					gridx += 1
-					position.x += gridjump
-					emit_signal("Bmove",dirs.right)
-					get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
-					mobile = false
+					move(dirs.right)
 
 		if event.is_action_pressed("B_SHOOT") and weaponCooledDown == true:
 			weaponCooledDown = false
