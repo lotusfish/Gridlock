@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+#region notes to myself
+
 #Note to future me:
 #	When creating abilities:
 #		Add it to the abilities enum
@@ -9,7 +11,9 @@ extends KinematicBody2D
 
 #TODO create a movement function and generally prepare for networking implementation
 
-#basic variables
+#endregion
+
+#region basic variables
 var gridx = 2 #Current grid position
 var gridy = 2 #^^^^
 var gridjump = 48 #Distance between grid squares
@@ -22,8 +26,9 @@ onready var globals = get_node("/root/preferences")#Where global variables and s
 export(int) var AorB #Which player 1:A 2:B
 export(PackedScene) var myBullet # What's my bullet scene
 export(NodePath) var myEnemy #the other enemy
+#endregion
 
-#enum for directions
+#region enums
 enum dirs{
 	up = 1
 	left = 2
@@ -40,8 +45,9 @@ enum abilities{
 	beamTurret = 5
 	mine = 6
 }
+#endregion
 
-#my abilities
+#region vars that should be overwritten at game start
 
 var abilityA = abilities.burstShot
 var abilityB = abilities.zapEnemy
@@ -53,8 +59,9 @@ var aCD = 3
 var bCD = 3
 var cCD = 3
 var myClass = 1
+#endregion
 
-#signals
+#region signals
 signal Ahurt
 signal Adead
 signal Ashot
@@ -65,77 +72,11 @@ signal Bshot
 signal Bmove(dir)
 signal startCooldown(cd,slot)
 #shootin
-var bulletA = preload("res://playersandbullets/bullet_a.tscn")
-var bulletB = preload("res://playersandbullets/bullet_b.tscn")
+#var bulletA = preload("res://playersandbullets/bullet_a.tscn")
+#var bulletB = preload("res://playersandbullets/bullet_b.tscn")
 
-func _ready():
-	match AorB:
-		1:
-			myClass = globals.classA
-		2:
-			myClass = globals.classB
-	$Sprites/AnimationPlayer.play("bobbing")
-	#Cooldowns
-	match myClass:
-		1: # generic class
-			abilityA = abilities.burstShot
-			abilityB = abilities.zapEnemy
-			abilityC = abilities.shield
-		2:
-			abilityA = abilities.beamTurret
-			abilityB = abilities.mine
-			abilityC = abilities.barrier
-	match abilityA:
-		1:
-			aCD = 3
-		2:
-			aCD = 3
-		3:
-			aCD = 4
-		4:
-			aCD = 6
-		5:
-			aCD = 14
-		6:
-			aCD = 8
-	match abilityB:
-		1:
-			bCD = 3
-		2:
-			bCD = 3
-		3:
-			bCD = 4
-		4:
-			bCD = 6
-		5:
-			bCD = 14
-		6:
-			bCD = 8
-	match abilityC:
-		1:
-			cCD = 3
-		2:
-			cCD = 3
-		3:
-			cCD = 4
-		4:
-			cCD = 6
-		5:
-			cCD = 14
-		6:
-			cCD = 8
-	#Set up signals for cooldowns
-	if AorB == 1:
-		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
-		connect("startCooldown",get_node("../CDI/ACD2"),"startCooldown")
-		connect("startCooldown",get_node("../CDI/ACD3"),"startCooldown")
-	elif AorB == 2:
-		connect("startCooldown",get_node("../CDI/BCD1"),"startCooldown")
-		connect("startCooldown",get_node("../CDI/BCD2"),"startCooldown")
-		connect("startCooldown",get_node("../CDI/BCD3"),"startCooldown")
+#endregion
 
-	pass 
-	
 func shoot():
 	var shot = myBullet.instance()
 	owner.add_child(shot)
@@ -146,7 +87,7 @@ func shoot():
 		emit_signal("Bshot")
 	pass
 
-#ability functions
+#region abilityfuncs
 func abilityBurstShot():
 	var shotA = myBullet.instance()
 	var shotB = myBullet.instance()
@@ -233,7 +174,9 @@ func cast(ability):
 	else:
 		print("Invalid ability cast")
 
-#function to declar abilities cooled down
+#endregion
+
+#region cooldownfuncs
 func aCooled():
 	aCooledDown = true
 func bCooled():
@@ -244,6 +187,76 @@ func weaponCooled():
 	weaponCooledDown = true
 func movementCooled():
 	mobile = true
+#endregion
+
+#region editor callbacks
+func _ready():
+	match AorB:
+		1:
+			myClass = globals.classA
+		2:
+			myClass = globals.classB
+	$Sprites/AnimationPlayer.play("bobbing")
+	#Cooldowns
+	match myClass:
+		1: # generic class
+			abilityA = abilities.burstShot
+			abilityB = abilities.zapEnemy
+			abilityC = abilities.shield
+		2:
+			abilityA = abilities.beamTurret
+			abilityB = abilities.mine
+			abilityC = abilities.barrier
+	match abilityA:
+		1:
+			aCD = 3
+		2:
+			aCD = 3
+		3:
+			aCD = 4
+		4:
+			aCD = 6
+		5:
+			aCD = 14
+		6:
+			aCD = 8
+	match abilityB:
+		1:
+			bCD = 3
+		2:
+			bCD = 3
+		3:
+			bCD = 4
+		4:
+			bCD = 6
+		5:
+			bCD = 14
+		6:
+			bCD = 8
+	match abilityC:
+		1:
+			cCD = 3
+		2:
+			cCD = 3
+		3:
+			cCD = 4
+		4:
+			cCD = 6
+		5:
+			cCD = 14
+		6:
+			cCD = 8
+	#Set up signals for cooldowns
+	if AorB == 1:
+		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/ACD2"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/ACD3"),"startCooldown")
+	elif AorB == 2:
+		connect("startCooldown",get_node("../CDI/BCD1"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/BCD2"),"startCooldown")
+		connect("startCooldown",get_node("../CDI/BCD3"),"startCooldown")
+
+	pass 
 
 func _input(event):
 	if AorB == 1:
@@ -366,7 +379,7 @@ func _process(delta):
 			emit_signal("Adead")
 		elif AorB == 2:
 			emit_signal("Bdead")
-	pass
+
 
 func _on_Area2D_hit():
 	if invuln == false:
@@ -375,3 +388,4 @@ func _on_Area2D_hit():
 			emit_signal("Ahurt")
 		elif AorB == 2:
 			emit_signal("Bhurt")
+#endregion
