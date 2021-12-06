@@ -223,22 +223,31 @@ func movementCooled():
 
 #region editor callbacks
 func _ready():
+	#get which class i am according to preferences.gd
 	match AorB:
 		1:
 			myClass = globals.classA
 		2:
 			myClass = globals.classB
+	
+	#begin playing my animation
 	$Sprites/AnimationPlayer.play("bobbing")
-	#Cooldowns
+	#Define which abilities are tied to your class
 	match myClass:
-		1: # generic class
+		1: # artificer
 			abilityA = abilities.burstShot
 			abilityB = abilities.zapEnemy
 			abilityC = abilities.shield
-		2:
+		2: # tinkerer
 			abilityA = abilities.beamTurret
 			abilityB = abilities.mine
 			abilityC = abilities.barrier
+		3: # trapper
+			abilityA = abilities.burstShot
+			abilityB = abilities.mine
+			abilityC = abilities.shield
+
+	#Define your cooldowns based on what's stored in your ability variables.
 	match abilityA:
 		1:
 			aCD = 3

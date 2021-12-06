@@ -32,7 +32,7 @@ margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Player A"
-items = [ "Player A", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null ]
+items = [ "Player A", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Trapper", null, false, 3, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -45,7 +45,7 @@ margin_right = 544.911
 margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
 text = "Player B"
-items = [ "Player B", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null ]
+items = [ "Player B", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Trapper", null, false, 3, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
