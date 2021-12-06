@@ -53,14 +53,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PLAY" type="TextureButton" parent="Control"]
+[node name="PLAY" type="TextureButton" parent="Buttons"]
 margin_left = 25.0
 margin_top = 160.0
 margin_right = 197.0
@@ -70,7 +70,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SETTINGS" type="TextureButton" parent="Control"]
+[node name="SETTINGS" type="TextureButton" parent="Buttons"]
 margin_left = 240.0
 margin_top = 160.0
 margin_right = 422.0
@@ -80,7 +80,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TUTORIAL" type="TextureButton" parent="Control"]
+[node name="TUTORIAL" type="TextureButton" parent="Buttons"]
 margin_left = 16.0
 margin_top = 230.0
 margin_right = 197.0
@@ -90,7 +90,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CUSTOMISE" type="TextureButton" parent="Control"]
+[node name="CUSTOMISE" type="TextureButton" parent="Buttons"]
+visible = false
 margin_left = 237.0
 margin_top = 227.0
 margin_right = 422.0
@@ -100,7 +101,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Control/PLAY" to="." method="_on_PLAY_pressed"]
-[connection signal="pressed" from="Control/SETTINGS" to="." method="_on_SETTINGS_pressed"]
-[connection signal="pressed" from="Control/TUTORIAL" to="." method="_on_TUTORIAL_pressed"]
-[connection signal="pressed" from="Control/CUSTOMISE" to="." method="_on_CUSTOMISE_pressed"]
+[connection signal="pressed" from="Buttons/PLAY" to="." method="_on_PLAY_pressed"]
+[connection signal="pressed" from="Buttons/SETTINGS" to="." method="_on_SETTINGS_pressed"]
+[connection signal="pressed" from="Buttons/TUTORIAL" to="." method="_on_TUTORIAL_pressed"]
+[connection signal="pressed" from="Buttons/CUSTOMISE" to="." method="_on_CUSTOMISE_pressed"]

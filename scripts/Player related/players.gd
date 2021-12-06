@@ -9,8 +9,6 @@ extends KinematicBody2D
 #		Write the ability function
 #		Add it to cast()
 
-#TODO create a movement function and generally prepare for networking implementation
-
 #endregion
 
 #region basic variables
