@@ -69,9 +69,6 @@ signal Bdead
 signal Bshot
 signal Bmove(dir)
 signal startCooldown(cd,slot)
-#shootin
-#var bulletA = preload("res://playersandbullets/bullet_a.tscn")
-#var bulletB = preload("res://playersandbullets/bullet_b.tscn")
 
 #endregion
 
