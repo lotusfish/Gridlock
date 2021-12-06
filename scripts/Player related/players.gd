@@ -186,7 +186,7 @@ func abilityMine():
 	owner.add_child(tur)
 	if AorB == 1:
 		tur.position = get_node("../CrosshairA").global_position
-	elif AorB == 1:
+	elif AorB == 2:
 		tur.position = get_node("../CrosshairB").global_position
 
 #function that casts abilities
