@@ -98,7 +98,14 @@ func move(dir):
 		emit_signal("Bmove",dir)
 	get_tree().create_timer(movementCD).connect("timeout",self,"movementCooled")
 	mobile = false
-		
+
+func hurt(dmg:float = 1):
+	hp -= 1
+	if AorB == 1:
+		emit_signal("Ahurt")
+	elif AorB == 2:
+		emit_signal("Bhurt")
+
 #endregion
 
 #region abilityfuncs
@@ -141,11 +148,12 @@ func abiltyZapEnemy():
 		bolt.global_position = crosshair.global_position
 	if enemy.gridx == gridx and enemy.gridy == gridy:
 		if enemy.invuln == false:
-			enemy.hp -= 1
-			if AorB == 1:
-				enemy.emit_signal("Bhurt")
-			else:
-				enemy.emit_signal("Ahurt")
+			enemy.hurt()
+			#enemy.hp -= 1
+			#if AorB == 1:
+				#enemy.emit_signal("Bhurt")
+			#else:
+				#enemy.emit_signal("Ahurt")
 	pass
 func abilityShield():
 	invuln = true
@@ -376,9 +384,5 @@ func _process(delta):
 
 func _on_Area2D_hit():
 	if invuln == false:
-		hp -= 1
-		if AorB == 1:
-			emit_signal("Ahurt")
-		elif AorB == 2:
-			emit_signal("Bhurt")
+		hurt()
 #endregion
