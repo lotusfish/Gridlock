@@ -50,12 +50,14 @@ enum abilities{
 var abilityA = abilities.burstShot
 var abilityB = abilities.zapEnemy
 var abilityC = abilities.shield
+var myAbilities = [abilities.burstShot, abilities.zapEnemy, abilities.shield]
 var aCooledDown = true
 var bCooledDown = true
 var cCooledDown = true
 var aCD = 3
 var bCD = 3
 var cCD = 3
+var cd = [3,3,3]
 var myClass = 1
 #endregion
 
@@ -232,17 +234,17 @@ func _ready():
 	#Define which abilities are tied to your class
 	match myClass:
 		1: # artificer
-			abilityA = abilities.burstShot
-			abilityB = abilities.zapEnemy
-			abilityC = abilities.shield
+			myAbilities[0] = abilities.burstShot
+			myAbilities[1] = abilities.zapEnemy
+			myAbilities[2] = abilities.shield
 		2: # tinkerer
-			abilityA = abilities.beamTurret
-			abilityB = abilities.mine
-			abilityC = abilities.barrier
+			myAbilities[0] = abilities.beamTurret
+			myAbilities[1] = abilities.mine
+			myAbilities[2] = abilities.barrier
 		3: # trapper
-			abilityA = abilities.burstShot
-			abilityB = abilities.mine
-			abilityC = abilities.shield
+			myAbilities[0] = abilities.burstShot
+			myAbilities[1] = abilities.mine
+			myAbilities[2] = abilities.shield
 
 	#Define your cooldowns based on what's stored in your ability variables.
 	match abilityA:
@@ -284,6 +286,20 @@ func _ready():
 			cCD = 14
 		6:
 			cCD = 8
+	for i in range(2):
+		match myAbilities[i]:
+			1:
+				cd[i] = 3
+			2:
+				cd[i] = 3
+			3:
+				cd[i] = 4
+			4:
+				cd[i] = 6
+			5:
+				cd[i] = 14
+			6:
+				cd[i] = 8 
 	#Set up signals for cooldowns
 	if AorB == 1:
 		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
@@ -320,22 +336,22 @@ func _input(event):
 			get_tree().create_timer(0.25).connect("timeout",self,"weaponCooled")
 			
 		if event.is_action_pressed("A_ABIL1") and aCooledDown:
-			cast(abilityA)
+			cast(myAbilities[0])
 			aCooledDown = false
-			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
-			emit_signal("startCooldown",aCD,1)
+			get_tree().create_timer(cd[0]).connect("timeout",self,"aCooled")
+			emit_signal("startCooldown",cd[0],1)
 			
 		if event.is_action_pressed("A_ABIL2") and bCooledDown:
-			cast(abilityB)
+			cast(myAbilities[1])
 			bCooledDown = false
-			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
-			emit_signal("startCooldown",bCD,2)
+			get_tree().create_timer(cd[1]).connect("timeout",self,"bCooled")
+			emit_signal("startCooldown",cd[1],2)
 			
 		if event.is_action_pressed("A_ABIL3") and cCooledDown:
-			cast(abilityC)
+			cast(myAbilities[2])
 			cCooledDown = false
-			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
-			emit_signal("startCooldown",cCD,3)
+			get_tree().create_timer(cd[2]).connect("timeout",self,"cCooled")
+			emit_signal("startCooldown",cd[2],3)
 
 	elif AorB == 2:
 		if mobile == true:
@@ -361,22 +377,22 @@ func _input(event):
 			shoot()
 
 		if event.is_action_pressed("B_ABIL1") and aCooledDown:
-			cast(abilityA)
+			cast(myAbilities[0])
 			aCooledDown = false
-			get_tree().create_timer(aCD).connect("timeout",self,"aCooled")
-			emit_signal("startCooldown",aCD,1)
+			get_tree().create_timer(cd[0]).connect("timeout",self,"aCooled")
+			emit_signal("startCooldown",cd[0],1)
 			
 		if event.is_action_pressed("B_ABIL2") and bCooledDown:
-			cast(abilityB)
+			cast(myAbilities[1])
 			bCooledDown = false
-			get_tree().create_timer(bCD).connect("timeout",self,"bCooled")
-			emit_signal("startCooldown",bCD,2)
+			get_tree().create_timer(cd[1]).connect("timeout",self,"bCooled")
+			emit_signal("startCooldown",cd[1],2)
 			
 		if event.is_action_pressed("B_ABIL3") and cCooledDown:
-			cast(abilityC)
+			cast(myAbilities[2])
 			cCooledDown = false
-			get_tree().create_timer(cCD).connect("timeout",self,"cCooled")
-			emit_signal("startCooldown",cCD,3)
+			get_tree().create_timer(cd[2]).connect("timeout",self,"cCooled")
+			emit_signal("startCooldown",cd[2],3)
 
 func _process(delta):
 	if hp == 0:
