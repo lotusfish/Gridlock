@@ -42,6 +42,7 @@ enum abilities{
 	barrier = 4
 	beamTurret = 5
 	mine = 6
+	mortar = 6
 }
 #endregion
 
@@ -187,6 +188,14 @@ func abilityMine():
 		tur.position = get_node("../CrosshairA").global_position
 	elif AorB == 2:
 		tur.position = get_node("../CrosshairB").global_position
+func abilityMortar():
+	var mine = load("res://spell scenes/mine.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
 
 #function that casts abilities
 func cast(ability):
@@ -239,7 +248,7 @@ func _ready():
 			myAbilities[2] = abilities.shield
 		2: # tinkerer
 			myAbilities[0] = abilities.beamTurret
-			myAbilities[1] = abilities.mine
+			myAbilities[1] = abilities.mortar
 			myAbilities[2] = abilities.barrier
 		3: # trapper
 			myAbilities[0] = abilities.burstShot
@@ -247,45 +256,6 @@ func _ready():
 			myAbilities[2] = abilities.shield
 
 	#Define your cooldowns based on what's stored in your ability variables.
-	match abilityA:
-		1:
-			aCD = 3
-		2:
-			aCD = 3
-		3:
-			aCD = 4
-		4:
-			aCD = 6
-		5:
-			aCD = 14
-		6:
-			aCD = 8
-	match abilityB:
-		1:
-			bCD = 3
-		2:
-			bCD = 3
-		3:
-			bCD = 4
-		4:
-			bCD = 6
-		5:
-			bCD = 14
-		6:
-			bCD = 8
-	match abilityC:
-		1:
-			cCD = 3
-		2:
-			cCD = 3
-		3:
-			cCD = 4
-		4:
-			cCD = 6
-		5:
-			cCD = 14
-		6:
-			cCD = 8
 	for i in range(2):
 		match myAbilities[i]:
 			1:
