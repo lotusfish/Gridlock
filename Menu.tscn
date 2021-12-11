@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://art/UI/MENU BTNS/PlayBTN.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/MENU BTNS/customBTNpng.png" type="Texture" id=2]
@@ -7,6 +7,19 @@
 [ext_resource path="res://art/UI/MENU BTNS/TutorialBTNpng.png" type="Texture" id=5]
 [ext_resource path="res://art/UI/MENU BTNS/SettingsBTN.png" type="Texture" id=6]
 [ext_resource path="res://scripts/Menu/MainMenu.gd" type="Script" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [  ],
+"loop": true,
+"name": "wardrobe",
+"speed": 5.0
+} ]
 
 [node name="Menu" type="Node2D"]
 script = ExtResource( 7 )
@@ -21,10 +34,6 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-
-[node name="MenuBase" type="Sprite" parent="."]
-position = Vector2( 320, 180 )
-texture = ExtResource( 4 )
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
@@ -91,6 +100,7 @@ __meta__ = {
 }
 
 [node name="CUSTOMISE" type="TextureButton" parent="Buttons"]
+visible = false
 margin_left = 237.0
 margin_top = 227.0
 margin_right = 422.0
@@ -99,6 +109,10 @@ texture_normal = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MenuBase" type="AnimatedSprite" parent="."]
+position = Vector2( 320, 180 )
+frames = SubResource( 1 )
 
 [connection signal="pressed" from="Buttons/PLAY" to="." method="_on_PLAY_pressed"]
 [connection signal="pressed" from="Buttons/SETTINGS" to="." method="_on_SETTINGS_pressed"]
