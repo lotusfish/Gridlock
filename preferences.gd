@@ -10,7 +10,7 @@ enum cosmetics{
 
 enum classes{
 	artificer = 1
-	engineer = 2
+	tinkerer = 2
 	trapper = 3
 }
 
@@ -19,7 +19,7 @@ var bodyA = cosmetics.dino
 var headB = cosmetics.ninja
 var bodyB = cosmetics.ninja
 
-var classA = classes.artificer
+var classA = classes.tinkerer
 var classB = classes.artificer
 
 func _process(_delta):

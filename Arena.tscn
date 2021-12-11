@@ -97,9 +97,6 @@ margin_top = 296.0
 margin_right = 64.0
 margin_bottom = 360.0
 A_Or_B_Or_C = 1
-Team_A_Or_B = 1
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [node name="ACD2" parent="CDI" instance=ExtResource( 9 )]
 margin_left = 112.0
@@ -107,9 +104,6 @@ margin_top = 295.0
 margin_right = 160.0
 margin_bottom = 359.0
 A_Or_B_Or_C = 2
-Team_A_Or_B = 1
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [node name="ACD3" parent="CDI" instance=ExtResource( 9 )]
 margin_left = 208.0
@@ -117,9 +111,6 @@ margin_top = 296.0
 margin_right = 256.0
 margin_bottom = 360.0
 A_Or_B_Or_C = 3
-Team_A_Or_B = 1
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [node name="BCD1" parent="CDI" instance=ExtResource( 9 )]
 margin_left = 384.0
@@ -127,9 +118,6 @@ margin_top = 295.0
 margin_right = 432.0
 margin_bottom = 359.0
 A_Or_B_Or_C = 1
-Team_A_Or_B = 2
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [node name="BCD2" parent="CDI" instance=ExtResource( 9 )]
 margin_left = 481.0
@@ -137,9 +125,6 @@ margin_top = 296.0
 margin_right = 529.0
 margin_bottom = 360.0
 A_Or_B_Or_C = 2
-Team_A_Or_B = 2
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [node name="BCD3" parent="CDI" instance=ExtResource( 9 )]
 margin_left = 577.0
@@ -147,9 +132,6 @@ margin_top = 296.0
 margin_right = 625.0
 margin_bottom = 360.0
 A_Or_B_Or_C = 3
-Team_A_Or_B = 2
-PlayerA = NodePath("../../PlayerA")
-PlayerB = NodePath("../../PlayerB")
 
 [connection signal="Ahurt" from="PlayerA" to="Text scores/ScoreB" method="_on_PlayerA_Ahurt"]
 [connection signal="Bhurt" from="PlayerB" to="Text scores/ScoreA" method="_on_PlayerB_Bhurt"]

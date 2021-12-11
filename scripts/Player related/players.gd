@@ -42,7 +42,7 @@ enum abilities{
 	barrier = 4
 	beamTurret = 5
 	mine = 6
-	mortar = 6
+	mortar = 7
 }
 #endregion
 
@@ -189,13 +189,10 @@ func abilityMine():
 	elif AorB == 2:
 		tur.position = get_node("../CrosshairB").global_position
 func abilityMortar():
-	var mine = load("res://spell scenes/mine.tscn")
-	var tur = mine.instance()
-	owner.add_child(tur)
-	if AorB == 1:
-		tur.position = get_node("../CrosshairA").global_position
-	elif AorB == 2:
-		tur.position = get_node("../CrosshairB").global_position
+	var mortar = load("res://spell scenes/mortar.tscn")
+	var inst = mortar.instance()
+	owner.add_child(inst)
+	inst.position = global_position
 
 #function that casts abilities
 func cast(ability):
@@ -211,6 +208,8 @@ func cast(ability):
 		abilityTurret()
 	elif ability == abilities.mine:
 		abilityMine()
+	elif ability == abilities.mortar:
+		abilityMortar()
 	else:
 		print("Invalid ability cast")
 
@@ -269,7 +268,9 @@ func _ready():
 			5:
 				cd[i] = 14
 			6:
-				cd[i] = 8 
+				cd[i] = 8 	
+			7:
+				cd[i] = 1
 	#Set up signals for cooldowns
 	if AorB == 1:
 		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
