@@ -19,7 +19,7 @@ var bodyA = cosmetics.dino
 var headB = cosmetics.ninja
 var bodyB = cosmetics.ninja
 
-var classA = classes.tinkerer
+var classA = classes.artificer
 var classB = classes.artificer
 
 func _process(_delta):
