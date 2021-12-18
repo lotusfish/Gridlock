@@ -104,6 +104,9 @@ func hurt(dmg:float = 1):
 	elif AorB == 2:
 		emit_signal("Bhurt")
 
+#exposing more variables to other nodes
+func setMoveCD(newValue):
+	movementCD = newValue
 #endregion
 
 #region abilityfuncs
