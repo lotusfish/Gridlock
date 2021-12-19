@@ -41,7 +41,7 @@ enum abilities{
 	#engineer class
 	barrier = 4
 	beamTurret = 5
-	mine = 6
+	mine = 6 # this ability has since been removed from the game but is left in code just in case. don't re-use unless necesarry
 	mortar = 7
 }
 #endregion
@@ -107,6 +107,15 @@ func hurt(dmg:float = 1):
 #exposing more variables to other nodes
 func setMoveCD(newValue):
 	movementCD = newValue
+
+func paralyze(duration):
+	paralyzed = true
+	mobile = false
+	get_tree().create_timer(duration).connect("timeout",self,"endparalyze")
+
+func endparalyze():
+	paralyzed = false
+	mobile = true
 #endregion
 
 #region abilityfuncs
@@ -228,7 +237,8 @@ func cCooled():
 func weaponCooled():
 	weaponCooledDown = true
 func movementCooled():
-	mobile = true
+	if paralyzed == false:
+		mobile = true
 #endregion
 
 #region editor callbacks
