@@ -19,6 +19,7 @@ var hp = 3 # Starting HP
 var invuln = false #Am i currently invulnerable
 var weaponCooledDown = true #Can i shoot?
 var mobile = true#Can i move?
+var paralyzed = false # am i banned from moving ;(
 var movementCD = 0.075#Cooldown between movements
 onready var globals = get_node("/root/preferences")#Where global variables and stuff are stored
 export(int) var AorB #Which player 1:A 2:B
