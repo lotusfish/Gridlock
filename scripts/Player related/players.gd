@@ -59,7 +59,7 @@ var cCooledDown = true
 var aCD = 3
 var bCD = 3
 var cCD = 3
-var cd = [3,3,3]
+var cd = [200,200,200]
 var myClass = 1
 #endregion
 
@@ -269,7 +269,7 @@ func _ready():
 			myAbilities[2] = abilities.shield
 
 	#Define your cooldowns based on what's stored in your ability variables.
-	for i in range(2):
+	for i in range(3):
 		match myAbilities[i]:
 			1:
 				cd[i] = 3
@@ -278,13 +278,13 @@ func _ready():
 			3:
 				cd[i] = 4
 			4:
-				cd[i] = 6
+				cd[i] = 14
 			5:
 				cd[i] = 14
 			6:
 				cd[i] = 8 	
 			7:
-				cd[i] = 1
+				cd[i] = 15
 	#Set up signals for cooldowns
 	if AorB == 1:
 		connect("startCooldown",get_node("../CDI/ACD1"),"startCooldown")
