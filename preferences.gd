@@ -1,23 +1,13 @@
 extends Node
 
-var heads = ["res://player parts/head/head_dino.png","res://player parts/head/head_ninja.png"]
-var bodies = ["res://player parts/torso/body_dino.png","res://player parts/body/body_ninja.png"]
-
-enum cosmetics{
-	dino = 1
-	ninja = 2
-}
+var skins = ["res://icon.png","res://art/skins/tinkerer_skin.png","res://icon.png"]
+var shootingSkins = ["res://icon.png","res://art/skins/tinkerer_shooting.png","icon.png"]
 
 enum classes{
 	artificer = 1
 	tinkerer = 2
 	trapper = 3
 }
-
-var headA = cosmetics.dino
-var bodyA = cosmetics.dino
-var headB = cosmetics.ninja
-var bodyB = cosmetics.ninja
 
 var classA = classes.artificer
 var classB = classes.artificer

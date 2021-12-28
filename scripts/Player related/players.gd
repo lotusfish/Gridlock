@@ -61,6 +61,8 @@ var bCD = 3
 var cCD = 3
 var cd = [200,200,200]
 var myClass = 1
+var myIdleAnim
+var myShotAnim
 #endregion
 
 #region signals
@@ -122,6 +124,7 @@ func endparalyze():
 #region abilityfuncs
 
 func shoot():
+	$Sprite.texture = myShotAnim
 	var shot = myBullet.instance()
 	owner.add_child(shot)
 	shot.position = position
@@ -237,6 +240,7 @@ func cCooled():
 	cCooledDown = true
 func weaponCooled():
 	weaponCooledDown = true
+	$Sprite.texture = myIdleAnim
 func movementCooled():
 	if paralyzed == false:
 		mobile = true
@@ -250,9 +254,12 @@ func _ready():
 			myClass = globals.classA
 		2:
 			myClass = globals.classB
-	
-	#begin playing my animation
-	$Sprites/AnimationPlayer.play("bobbing")
+	#define my sprites
+	myIdleAnim = load(globals.skins[myClass-1])
+	myShotAnim = load(globals.shootingSkins[myClass-1])
+	$Sprite.texture = myIdleAnim
+	if AorB == 2:
+		$Sprite.scale.x = -1
 	#Define which abilities are tied to your class
 	match myClass:
 		1: # artificer

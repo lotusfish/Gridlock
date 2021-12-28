@@ -62,6 +62,7 @@ position = Vector2( 0, -1 )
 shape = SubResource( 2 )
 
 [node name="Sprites" type="Node2D" parent="."]
+visible = false
 position = Vector2( 4.94975, -5.3033 )
 
 [node name="head" type="Sprite" parent="Sprites"]
@@ -78,5 +79,7 @@ anims/bobbing = SubResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
 shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
 
 [connection signal="hit" from="Area2D" to="." method="_on_Area2D_hit"]
