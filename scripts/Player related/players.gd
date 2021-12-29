@@ -255,8 +255,8 @@ func _ready():
 		2:
 			myClass = globals.classB
 	#define my sprites
-	myIdleAnim = load(globals.skins[myClass-1])
-	myShotAnim = load(globals.shootingSkins[myClass-1])
+	myIdleAnim = load(globals.skins[myClass-1][0])
+	myShotAnim = load(globals.skins[myClass-1][1])
 	$Sprite.texture = myIdleAnim
 	if AorB == 2:
 		$Sprite.scale.x = -1

@@ -1,7 +1,10 @@
 extends Node
 
-var skins = ["res://icon.png","res://art/skins/tinkerer_skin.png","res://icon.png"]
-var shootingSkins = ["res://icon.png","res://art/skins/tinkerer_shooting.png","icon.png"]
+var skins = [
+	["res://icon.png","res://icon.png"], #artificer
+	["res://art/skins/tinkerer_skin.png","res://art/skins/tinkerer_shooting.png"], #tinkerer
+	["res://icon.png","res://icon.png"] #trapper
+]
 
 enum classes{
 	artificer = 1
