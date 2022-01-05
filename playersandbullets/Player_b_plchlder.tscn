@@ -11,15 +11,21 @@ extents = Vector2( 7.75164, 14.9384 )
 [sub_resource type="GDScript" id=2]
 script/source = "extends Area2D
 signal hit
+signal paralyze
 func _ready():
 	pass
 
 func _process(delta):
 	var bullet = get_tree().get_nodes_in_group(\"BulletA\")
+	var traps = get_tree().get_nodes_in_group(\"traps\")
 	for i in range(len(bullet)):
 		if overlaps_area(bullet[i]) == true:
 			bullet[i].queue_free()
 			emit_signal(\"hit\")
+	for i in range(len(traps)):
+		if overlaps_area(traps[i]) == true:
+			if traps[i].is_in_group(\"paralyzer\"):
+				emit_signal(\"paralyze\")
 				
 "
 

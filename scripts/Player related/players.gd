@@ -398,3 +398,8 @@ func _on_Area2D_hit():
 	if invuln == false:
 		hurt()
 #endregion
+
+
+func _on_Area2D_paralyze():
+	paralyze(1.5)
+	pass # Replace with function body.

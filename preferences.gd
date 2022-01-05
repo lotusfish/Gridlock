@@ -1,9 +1,9 @@
 extends Node
 
 var skins = [
-	["res://icon.png","res://icon.png"], #artificer
+	["res://art/skins/artificer_skin.png","res://art/skins/artificer_shooting.png"], #artificer
 	["res://art/skins/tinkerer_skin.png","res://art/skins/tinkerer_shooting.png"], #tinkerer
-	["res://icon.png","res://icon.png"] #trapper
+	["res://art/skins/hunter_skin.png","res://art/skins/hunter_shooting.png"] #hunter
 ]
 
 enum classes{
