@@ -44,6 +44,10 @@ enum abilities{
 	beamTurret = 5
 	mine = 6 # this ability has since been removed from the game but is left in code just in case. don't re-use unless necesarry
 	mortar = 7
+	#hunter class
+	paratrap = 8
+	slowtrap = 9
+	damagetrap = 10
 }
 #endregion
 
@@ -209,8 +213,23 @@ func abilityMortar():
 	var inst = mortar.instance()
 	owner.add_child(inst)
 	inst.position = global_position
+	if AorB == 2:
+		inst.scale.x = -1
+	inst.AorB = AorB
+func abilityParalyzerTrap():
+	var mine = load("res://spell scenes/paratrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
+func abilitySlowerTrap():
+	print("error, ability not yet implemented")
+func abilityDamageTrap():
+	print("error, ability not yet implemented")
 
-#function that casts abilities
+	#function that casts abilities
 func cast(ability):
 	if ability == abilities.burstShot:
 		abilityBurstShot()
@@ -226,6 +245,12 @@ func cast(ability):
 		abilityMine()
 	elif ability == abilities.mortar:
 		abilityMortar()
+	elif ability == abilities.paratrap:
+		abilityParalyzerTrap()
+	elif ability == abilities.slowtrap:
+		abilitySlowerTrap()
+	elif ability == abilities.damagetrap:
+		abilityDamageTrap()
 	else:
 		print("Invalid ability cast")
 
@@ -271,9 +296,9 @@ func _ready():
 			myAbilities[1] = abilities.mortar
 			myAbilities[2] = abilities.barrier
 		3: # trapper
-			myAbilities[0] = abilities.burstShot
-			myAbilities[1] = abilities.mine
-			myAbilities[2] = abilities.shield
+			myAbilities[0] = abilities.paratrap
+			myAbilities[1] = abilities.slowtrap
+			myAbilities[2] = abilities.damagetrap
 
 	#Define your cooldowns based on what's stored in your ability variables.
 	for i in range(3):
@@ -400,6 +425,3 @@ func _on_Area2D_hit():
 #endregion
 
 
-func _on_Area2D_paralyze():
-	paralyze(1.5)
-	pass # Replace with function body.
