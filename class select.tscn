@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/Menu/class select.gd" type="Script" id=1]
 [ext_resource path="res://art/ability FX/turretA.png" type="Texture" id=2]
 [ext_resource path="res://art/Bullets/blue_character_baseattack (1).png" type="Texture" id=3]
 [ext_resource path="res://misc resources/pixeboy.tres" type="Theme" id=4]
+[ext_resource path="res://art/ability FX/traps/hunting_bear_trap1.png" type="Texture" id=5]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -34,7 +35,7 @@ rect_pivot_offset = Vector2( 91.553, 20.4632 )
 theme = ExtResource( 4 )
 custom_colors/font_color_pressed = Color( 0, 0, 0, 1 )
 text = "Player A"
-items = [ "Player A", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Trapper", null, false, 3, null ]
+items = [ "Player A", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Hunter", ExtResource( 5 ), false, 3, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -48,7 +49,7 @@ margin_bottom = 192.134
 rect_pivot_offset = Vector2( 91.553, 20.4632 )
 theme = ExtResource( 4 )
 text = "Player B"
-items = [ "Player B", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Trapper", null, false, 3, null ]
+items = [ "Player B", null, false, 0, null, "Artificer", ExtResource( 3 ), false, 1, null, "Tinkerer", ExtResource( 2 ), false, 2, null, "Hunter", ExtResource( 5 ), false, 3, null ]
 selected = 0
 __meta__ = {
 "_edit_use_anchors_": true
@@ -79,11 +80,11 @@ bbcode_enabled = true
 bbcode_text = "[color=black]
 									Select A CLASS
 									
-	(we're working on fixing this screen)[/color]"
+	(screen to be improved later)[/color]"
 text = "
 									Select A CLASS
 									
-	(we're working on fixing this screen)"
+	(screen to be improved later)"
 __meta__ = {
 "_edit_use_anchors_": true
 }

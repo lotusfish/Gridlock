@@ -21,6 +21,7 @@ var weaponCooledDown = true #Can i shoot?
 var mobile = true#Can i move?
 var paralyzed = false # am i banned from moving ;(
 var movementCD = 0.075#Cooldown between movements
+var baseMoveCD = movementCD
 onready var globals = get_node("/root/preferences")#Where global variables and stuff are stored
 export(int) var AorB #Which player 1:A 2:B
 export(PackedScene) var myBullet # What's my bullet scene
@@ -123,6 +124,14 @@ func paralyze(duration):
 func endparalyze():
 	paralyzed = false
 	mobile = true
+
+func slow(duration,factor):
+	self.movementCD *= factor
+	get_tree().create_timer(duration).connect("timeout",self,"endSlow")
+
+func endSlow():
+	self.movementCD = baseMoveCD
+
 #endregion
 
 #region abilityfuncs
@@ -225,9 +234,21 @@ func abilityParalyzerTrap():
 	elif AorB == 2:
 		tur.position = get_node("../CrosshairB").global_position
 func abilitySlowerTrap():
-	print("error, ability not yet implemented")
+	var mine = load("res://spell scenes/slowtrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
 func abilityDamageTrap():
-	print("error, ability not yet implemented")
+	var mine = load("res://spell scenes/hurttrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
 
 	#function that casts abilities
 func cast(ability):
