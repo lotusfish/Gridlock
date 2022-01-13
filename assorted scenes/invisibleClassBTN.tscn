@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scripts/inane/invisibleClassBTN.gd" type="Script" id=1]
+[ext_resource path="res://art/particles/placeholder particle.png" type="Texture" id=2]
+
+[node name="Button" type="Button"]
+margin_right = 64.0
+margin_bottom = 64.0
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color( 1, 0, 0.854902, 1 )
+position = Vector2( 30, 29 )
+emitting = false
+amount = 250
+lifetime = 5.0
+texture = ExtResource( 2 )
+emission_shape = 2
+emission_rect_extents = Vector2( 32, 32 )
+gravity = Vector2( 0, -1 )
+initial_velocity = 150.0
+initial_velocity_random = 0.23
+angular_velocity = 720.0
+angular_velocity_random = 1.0
+damping = 10.0
