@@ -10,13 +10,14 @@ config_version=4
 
 [application]
 
-config/name="Gridlocked"
+config/name="Gridlock"
 run/main_scene="res://Menu.tscn"
 config/icon="res://art/Bullets/blue_character_baseattack (1).png"
 
 [autoload]
 
 preferences="*res://preferences.gd"
+AudioPlayer="*res://audioPlayer.tscn"
 
 [debug]
 

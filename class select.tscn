@@ -67,14 +67,14 @@ __meta__ = {
 }
 
 [node name="Button" type="Button" parent="."]
-anchor_left = -0.146875
-anchor_top = -0.405556
-anchor_right = -0.146875
-anchor_bottom = -0.405556
-margin_left = 175.0
-margin_top = 206.0
-margin_right = 462.0
-margin_bottom = 356.0
+anchor_left = 0.433
+anchor_top = 0.514
+anchor_right = 0.433
+anchor_bottom = 0.514
+margin_left = -0.120026
+margin_top = -0.0399933
+margin_right = 89.88
+margin_bottom = 25.96
 theme = ExtResource( 4 )
 flat = true
 __meta__ = {
@@ -82,11 +82,10 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
-anchor_left = -0.254687
-anchor_top = -0.277778
-anchor_right = 0.254687
-anchor_bottom = -2.11928e-08
+anchor_left = -0.267188
+anchor_top = -0.291667
+anchor_right = 0.242187
+anchor_bottom = -0.0138887
 margin_left = 286.0
 margin_top = 103.0
 margin_right = 375.0
@@ -96,17 +95,16 @@ bbcode_enabled = true
 bbcode_text = "[color=black]
 									Select A CLASS
 									
-	(screen to be improved later)[/color]"
+	[/color]"
 text = "
 									Select A CLASS
 									
-	(screen to be improved later)"
+	"
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="Node2D" type="Node2D" parent="."]
-visible = false
 
 [node name="ColorRect4" type="ColorRect" parent="Node2D"]
 margin_left = 440.0

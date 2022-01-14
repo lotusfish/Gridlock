@@ -137,6 +137,7 @@ __meta__ = {
 }
 
 [node name="CUSTOMISE" type="TextureButton" parent="Buttons"]
+visible = false
 margin_left = 237.0
 margin_top = 227.0
 margin_right = 422.0
