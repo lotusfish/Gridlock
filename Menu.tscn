@@ -73,15 +73,14 @@ __meta__ = {
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-visible = false
 margin_left = 13.0
 margin_top = 335.0
 margin_right = 535.0
 margin_bottom = 371.0
 rect_clip_content = false
 bbcode_enabled = true
-bbcode_text = "[color=purple][tornado radius=5 freq=2]Beta testing wave 2! [/tornado][/color]"
-text = "Beta testing wave 2! "
+bbcode_text = "[color=purple][tornado radius=5 freq=2]Beta Version 1.1[/tornado][/color]"
+text = "Beta Version 1.1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
