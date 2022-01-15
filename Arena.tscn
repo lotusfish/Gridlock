@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://art/UI/Crosshair.png" type="Texture" id=1]
 [ext_resource path="res://playersandbullets/Player_b_plchlder.tscn" type="PackedScene" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://playersandbullets/bullet_a.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assorted scenes/cooldown indicator.tscn" type="PackedScene" id=9]
 [ext_resource path="res://misc resources/pixeboy.tres" type="Theme" id=10]
+[ext_resource path="res://addons/radial_progress/RadialProgressBar.gd" type="Script" id=11]
+[ext_resource path="res://scripts/arena.gd" type="Script" id=12]
+[ext_resource path="res://art/UI/grid_lock_main_screen.png" type="Texture" id=13]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Sprite
@@ -34,6 +37,7 @@ func _process(delta):
 "
 
 [node name="Arena" type="Node2D"]
+script = ExtResource( 12 )
 
 [node name="ArenaGrid" type="Sprite" parent="."]
 position = Vector2( 320, 200 )
@@ -74,7 +78,7 @@ margin_top = 22.8775
 margin_right = 232.827
 margin_bottom = 62.8775
 theme = ExtResource( 10 )
-text = "Player A score: "
+text = "Player A score:  0"
 script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -86,7 +90,7 @@ margin_top = 23.102
 margin_right = 616.204
 margin_bottom = 63.102
 theme = ExtResource( 10 )
-text = "Player B score: "
+text = "Player B score:  0"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -135,6 +139,64 @@ margin_top = 296.0
 margin_right = 625.0
 margin_bottom = 360.0
 A_Or_B_Or_C = 3
+
+[node name="RadialProgressBar" type="Control" parent="."]
+margin_left = 320.0
+margin_top = 300.0
+margin_right = 320.0
+margin_bottom = 300.0
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+max_value = 90
+radius = 45
+progress = 90
+thickness = 50
+bg_color = Color( 0.109804, 0.352941, 1, 1 )
+bar_color = Color( 0.87451, 0, 0, 1 )
+
+[node name="PostGame" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="PostGame"]
+margin_left = -12.0
+margin_top = -16.0
+margin_right = 676.0
+margin_bottom = 374.0
+color = Color( 0.776471, 0.92549, 0.760784, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label1" type="RichTextLabel" parent="PostGame"]
+margin_left = 141.0
+margin_top = 144.0
+margin_right = 503.0
+margin_bottom = 168.0
+theme = ExtResource( 10 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "IF YOU SEE THIS TEXT, GAME'S BUGGED "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="RichTextLabel" parent="PostGame"]
+margin_left = 142.0
+margin_top = 187.0
+margin_right = 504.0
+margin_bottom = 211.0
+theme = ExtResource( 10 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "IF YOU SEE THIS TEXT, GAME'S BUGGED "
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridLockMainScreen" type="Sprite" parent="PostGame"]
+position = Vector2( 414, 186 )
+texture = ExtResource( 13 )
 
 [connection signal="Ahurt" from="PlayerA" to="Text scores/ScoreB" method="_on_PlayerA_Ahurt"]
 [connection signal="Bhurt" from="PlayerB" to="Text scores/ScoreA" method="_on_PlayerB_Bhurt"]

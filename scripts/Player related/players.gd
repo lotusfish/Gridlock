@@ -21,6 +21,7 @@ var weaponCooledDown = true #Can i shoot?
 var mobile = true#Can i move?
 var paralyzed = false # am i banned from moving ;(
 var movementCD = 0.075#Cooldown between movements
+var baseMoveCD = movementCD
 onready var globals = get_node("/root/preferences")#Where global variables and stuff are stored
 export(int) var AorB #Which player 1:A 2:B
 export(PackedScene) var myBullet # What's my bullet scene
@@ -44,6 +45,10 @@ enum abilities{
 	beamTurret = 5
 	mine = 6 # this ability has since been removed from the game but is left in code just in case. don't re-use unless necesarry
 	mortar = 7
+	#hunter class
+	paratrap = 8
+	slowtrap = 9
+	damagetrap = 10
 }
 #endregion
 
@@ -61,6 +66,8 @@ var bCD = 3
 var cCD = 3
 var cd = [200,200,200]
 var myClass = 1
+var myIdleAnim
+var myShotAnim
 #endregion
 
 #region signals
@@ -117,11 +124,20 @@ func paralyze(duration):
 func endparalyze():
 	paralyzed = false
 	mobile = true
+
+func slow(duration,factor):
+	self.movementCD *= factor
+	get_tree().create_timer(duration).connect("timeout",self,"endSlow")
+
+func endSlow():
+	self.movementCD = baseMoveCD
+
 #endregion
 
 #region abilityfuncs
 
 func shoot():
+	$Sprite.texture = myShotAnim
 	var shot = myBullet.instance()
 	owner.add_child(shot)
 	shot.position = position
@@ -206,8 +222,35 @@ func abilityMortar():
 	var inst = mortar.instance()
 	owner.add_child(inst)
 	inst.position = global_position
+	if AorB == 2:
+		inst.scale.x = -1
+	inst.AorB = AorB
+func abilityParalyzerTrap():
+	var mine = load("res://spell scenes/paratrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
+func abilitySlowerTrap():
+	var mine = load("res://spell scenes/slowtrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
+func abilityDamageTrap():
+	var mine = load("res://spell scenes/hurttrap.tscn")
+	var tur = mine.instance()
+	owner.add_child(tur)
+	if AorB == 1:
+		tur.position = get_node("../CrosshairA").global_position
+	elif AorB == 2:
+		tur.position = get_node("../CrosshairB").global_position
 
-#function that casts abilities
+	#function that casts abilities
 func cast(ability):
 	if ability == abilities.burstShot:
 		abilityBurstShot()
@@ -223,6 +266,12 @@ func cast(ability):
 		abilityMine()
 	elif ability == abilities.mortar:
 		abilityMortar()
+	elif ability == abilities.paratrap:
+		abilityParalyzerTrap()
+	elif ability == abilities.slowtrap:
+		abilitySlowerTrap()
+	elif ability == abilities.damagetrap:
+		abilityDamageTrap()
 	else:
 		print("Invalid ability cast")
 
@@ -237,6 +286,7 @@ func cCooled():
 	cCooledDown = true
 func weaponCooled():
 	weaponCooledDown = true
+	$Sprite.texture = myIdleAnim
 func movementCooled():
 	if paralyzed == false:
 		mobile = true
@@ -250,9 +300,12 @@ func _ready():
 			myClass = globals.classA
 		2:
 			myClass = globals.classB
-	
-	#begin playing my animation
-	$Sprites/AnimationPlayer.play("bobbing")
+	#define my sprites
+	myIdleAnim = load(globals.skins[myClass-1][0])
+	myShotAnim = load(globals.skins[myClass-1][1])
+	$Sprite.texture = myIdleAnim
+	if AorB == 2:
+		$Sprite.scale.x = -1
 	#Define which abilities are tied to your class
 	match myClass:
 		1: # artificer
@@ -264,9 +317,9 @@ func _ready():
 			myAbilities[1] = abilities.mortar
 			myAbilities[2] = abilities.barrier
 		3: # trapper
-			myAbilities[0] = abilities.burstShot
-			myAbilities[1] = abilities.mine
-			myAbilities[2] = abilities.shield
+			myAbilities[0] = abilities.paratrap
+			myAbilities[1] = abilities.slowtrap
+			myAbilities[2] = abilities.damagetrap
 
 	#Define your cooldowns based on what's stored in your ability variables.
 	for i in range(3):
@@ -391,3 +444,5 @@ func _on_Area2D_hit():
 	if invuln == false:
 		hurt()
 #endregion
+
+
