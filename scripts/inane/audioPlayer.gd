@@ -6,7 +6,9 @@ var music = [
 	], #menu themes
 	[
 		preload("res://sound/music/battleTheme.mp3"),
-		preload("res://sound/music/battle2.mp3")
+		preload("res://sound/music/battle2b.mp3"),
+		preload("res://sound/music/battle2a.mp3"),
+		preload("res://sound/music/battle3.mp3")
 	] #battle themes
 ]
 
