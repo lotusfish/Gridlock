@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://art/UI/MENU BTNS/PlayBTN.png" type="Texture" id=1]
 [ext_resource path="res://art/UI/MENU BTNS/customBTNpng.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://art/UI/MENU BTNS/SettingsBTN.png" type="Texture" id=6]
 [ext_resource path="res://scripts/Menu/MainMenu.gd" type="Script" id=7]
 [ext_resource path="res://art/UI/wardrobe_opening.png" type="Texture" id=8]
+[ext_resource path="res://misc resources/pixeboy.tres" type="Theme" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -78,9 +79,10 @@ margin_top = 335.0
 margin_right = 535.0
 margin_bottom = 371.0
 rect_clip_content = false
+theme = ExtResource( 9 )
 bbcode_enabled = true
-bbcode_text = "[color=purple][tornado radius=5 freq=2]Beta Version 1.1[/tornado][/color]"
-text = "Beta Version 1.1"
+bbcode_text = "[color=purple][tornado radius=5 freq=2]Beta Version 1.2[/tornado][/color]"
+text = "Beta Version 1.2"
 __meta__ = {
 "_edit_use_anchors_": false
 }

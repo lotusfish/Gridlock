@@ -151,15 +151,24 @@ __meta__ = {
 }
 max_value = 90
 radius = 45
-progress = 90
+progress = 5
 thickness = 50
 bg_color = Color( 0.109804, 0.352941, 1, 1 )
 bar_color = Color( 0.87451, 0, 0, 1 )
 
 [node name="PostGame" type="Node2D" parent="."]
-visible = false
 
-[node name="ColorRect" type="ColorRect" parent="PostGame"]
+[node name="CanvasLayer" type="CanvasLayer" parent="PostGame"]
+
+[node name="Control" type="Control" parent="PostGame/CanvasLayer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PostGame/CanvasLayer/Control"]
 margin_left = -12.0
 margin_top = -16.0
 margin_right = 676.0
@@ -170,7 +179,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label1" type="RichTextLabel" parent="PostGame"]
+[node name="GridLockMainScreen" type="Sprite" parent="PostGame/CanvasLayer/Control"]
+position = Vector2( 414, 186 )
+texture = ExtResource( 13 )
+
+[node name="Label1" type="RichTextLabel" parent="PostGame/CanvasLayer/Control"]
 margin_left = 141.0
 margin_top = 144.0
 margin_right = 503.0
@@ -182,7 +195,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="RichTextLabel" parent="PostGame"]
+[node name="Label2" type="RichTextLabel" parent="PostGame/CanvasLayer/Control"]
 margin_left = 142.0
 margin_top = 187.0
 margin_right = 504.0
@@ -193,10 +206,6 @@ text = "IF YOU SEE THIS TEXT, GAME'S BUGGED "
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="GridLockMainScreen" type="Sprite" parent="PostGame"]
-position = Vector2( 414, 186 )
-texture = ExtResource( 13 )
 
 [connection signal="Ahurt" from="PlayerA" to="Text scores/ScoreB" method="_on_PlayerA_Ahurt"]
 [connection signal="Bhurt" from="PlayerB" to="Text scores/ScoreA" method="_on_PlayerB_Bhurt"]
