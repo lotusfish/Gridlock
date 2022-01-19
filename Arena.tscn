@@ -151,7 +151,7 @@ __meta__ = {
 }
 max_value = 90
 radius = 45
-progress = 5
+progress = 90
 thickness = 50
 bg_color = Color( 0.109804, 0.352941, 1, 1 )
 bar_color = Color( 0.87451, 0, 0, 1 )
